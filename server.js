@@ -5,6 +5,9 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+// Importar las rutas
+const authRoutes = require('./routes/authRoutes}');
+
 // Inicializar la aplicación 
 const app = express();
 
@@ -30,6 +33,8 @@ mongoose.connect(MONGODB_URI)
 app.get('/api', (req, res) => {
     res.json({ message: 'Bienvenido a la API de ContApp!' });
 });
+
+app.use('/api/auth', authRoutes);
 
 function startServer() {
     const PORT = process.env.PORT || 4000; // Usa el puerto de .env o 4000 por defecto
