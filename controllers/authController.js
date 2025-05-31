@@ -3,6 +3,8 @@ const User = require('../models/User');
 // Importar jsonwebtoken
 const jwt = require('jsonwebtoken');   
 
+
+
 // Función para registrar un usuario nuevo
 exports.registerUser = async (req, res) => {
     // Obtener datos del cuerpo de la petición 
@@ -110,3 +112,29 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: 'Error interno del servidor al intentar iniciar sesión.' });
     }
 };
+
+// Función para obtener los datos del usuario actualmente autenticado
+exports.getCurrentUser = async (req, res) => {
+    try {
+
+        //Buscar al usuario en la base de datos usando el userId del token
+        const user = await User.findById(req.user.userId).select('-password');
+
+        if (!user) {
+            // Esto no debería suceder si el token es válido y el usuario no ha sido eliminado,
+            return res.status(404).json({ message: 'Usuario no encontrado.' });
+        }
+
+        //Enviar los datos del usuario
+        res.status(200).json(user);
+
+    } catch (error) {
+        console.error("Error en getCurrentUser:", error);
+        res.status(500).json({ message: 'Error interno del servidor al obtener datos del usuario.' });
+    }
+};
+
+// Al final de controllers/authController.js
+console.log('--- authController.js ---');
+console.log('Contenido de module.exports:', module.exports);
+console.log('Contenido de exports:', exports);
