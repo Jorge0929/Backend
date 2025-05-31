@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 
 // Importar las rutas
 const authRoutes = require('./routes/authRoutes.js');
+const declarationRoutes = require('./routes/declarationRoutes');
 // Inicializar la aplicación 
 const app = express();
 
@@ -34,6 +35,7 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/declarations', declarationRoutes);
 
 function startServer() {
     const PORT = process.env.PORT || 4000; // Usa el puerto de .env o 4000 por defecto
