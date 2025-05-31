@@ -6,6 +6,8 @@ const authController = require('../controllers/authController');
 // Importar el middleware
 const { protect } = require('../middleware/authMiddleware'); 
 
+
+
 console.log('Tipo de authController.getCurrentUser:', typeof authController.getCurrentUser);
 console.log('Tipo de protect:', typeof protect);
 

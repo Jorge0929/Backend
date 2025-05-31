@@ -10,7 +10,7 @@ const { protect } = require('../middleware/authMiddleware');
 //CREAR un nuevo borrador de declaración
 router.post('/', protect, declarationController.createDeclaration);
 
-//OBTENER TODAS las declaraciones del usuario autenticado (Historial)
+//OBTENER TODAS las declaraciones del usuario autenticado
 router.get('/', protect, declarationController.getUserDeclarations);
 
 //OBTENER UN borrador de declaración específico POR SU ID
