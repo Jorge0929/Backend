@@ -55,4 +55,58 @@ exports.registerUser = async (req, res) => {
     }
 };
 
-// Aquí iran las funciónes del login 
+
+// Función para iniciar sesión de un usuario existente
+exports.loginUser = async (req, res) => {
+    //Obtener email y password del cuerpo de la petición
+    const { email, password } = req.body;
+
+    try {
+        //Verificar si se dieron el email y password
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Por favor, proporciona email y contraseña.' });
+        }
+
+        // Buscar al usuario en la base de datos 
+        const user = await User.findOne({ email: email.toLowerCase() });
+        if (!user) {
+            // Si no se encuentra el usuario, enviar un error
+            return res.status(401).json({ message: 'Credenciales inválidas.' });
+        }
+
+        // 4. Comparar la contraseña proporcionada con la contraseña hasheada, usar el metodo comparePassword
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch) {
+            // Si las contraseñas no coinciden, error genérico
+            return res.status(401).json({ message: 'Credenciales inválidas.' });
+        }
+
+        // 5. Si las credenciales son correctas, generar un token JWT
+        const payload = {
+            userId: user._id,
+            nombre: user.nombre
+        };
+
+        const token = jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            // El token dura 1 hora
+            { expiresIn: '1h' }
+        );
+
+        //Enviar el token y la información del usuario 
+        res.status(200).json({
+            message: 'Inicio de sesión exitoso.',
+            token: token,
+            user: {
+                id: user._id,
+                nombre: user.nombre,
+                email: user.email
+            }
+        });
+
+    } catch (error) {
+        console.error("Error en loginUser:", error);
+        res.status(500).json({ message: 'Error interno del servidor al intentar iniciar sesión.' });
+    }
+};
