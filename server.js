@@ -7,8 +7,6 @@ const mongoose = require('mongoose');
 
 // Importar las rutas
 const authRoutes = require('./routes/authRoutes.js');
-
-
 // Inicializar la aplicación 
 const app = express();
 
