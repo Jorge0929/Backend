@@ -6,7 +6,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 // Importar las rutas
-const authRoutes = require('./routes/authRoutes}');
+const authRoutes = require('./routes/authRoutes.js');
+
 
 // Inicializar la aplicación 
 const app = express();
