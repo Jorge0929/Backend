@@ -18,16 +18,16 @@ Funcionalidad: Endpoints para registro, login (con JWT), protección de rutas, y
 
 Características Implementadas (API)
 
-Autenticación de Usuarios:**
-    * Registro de nuevos usuarios (`/api/auth/register`).
-    * Inicio de sesión con generación de JSON Web Tokens (JWT) (`/api/auth/login`).
-    * Middleware para proteger rutas que requieren autenticación.
-    * Endpoint para obtener datos del usuario actual (`/api/auth/me`).
+Autenticación de Usuarios:
+    Registro de nuevos usuarios (`/api/auth/register`).
+    Inicio de sesión con generación de JSON Web Tokens (JWT) (`/api/auth/login`).
+    Middleware para proteger rutas que requieren autenticación.
+    Endpoint para obtener datos del usuario actual (`/api/auth/me`).
 Gestión de Declaraciones (Protegido por JWT):**
-    * Crear un nuevo borrador de declaración (`POST /api/declarations`).
-    * Obtener todas las declaraciones de un usuario (`GET /api/declarations`).
-    * Obtener un borrador de declaración específico por ID (`GET /api/declarations/:id`).
-    * Actualizar un borrador de declaración existente (`PUT /api/declarations/:id`).
+    Crear un nuevo borrador de declaración (`POST /api/declarations`).
+    Obtener todas las declaraciones de un usuario (`GET /api/declarations`).
+    Obtener un borrador de declaración específico por ID (`GET /api/declarations/:id`).
+    Actualizar un borrador de declaración existente (`PUT /api/declarations/:id`).
 Seguridad: Hasheo de contraseñas con `bcryptjs`.
 
 Tech Stack
@@ -43,8 +43,8 @@ Gestor de Paquetes: npm
 
 Prerrequisitos
 
-* Node.js (v18.x o superior recomendado) y npm.
-* Una instancia de MongoDB corriendo (localmente o una URI de MongoDB Atlas).
+Node.js (v18.x o superior recomendado) y npm.
+Una instancia de MongoDB corriendo (localmente o una URI de MongoDB Atlas).
 
 Variables de Entorno
 
